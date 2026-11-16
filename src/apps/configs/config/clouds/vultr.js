@@ -1,7 +1,7 @@
-/** Vultr Cloud Platform cloud catalog for servers_config. */
+/** Vultr Cloud Platform cloud catalog for configs. */
 export default {
     "method": "object.update",
-    "array": "servers_config",
+    "array": "configs",
     "upsert": true,
     "object": [
         {

@@ -7,7 +7,7 @@
 /** Managed organization repository provisioning configuration. */
 export default {
     "method": "object.update",
-    "array": "servers_config",
+    "array": "configs",
     "upsert": true,
     "object": {
         "_id": "65f8cb447b39a3c1a8904e41",

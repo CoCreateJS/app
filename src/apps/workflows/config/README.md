@@ -4,7 +4,7 @@
 `signIn`. The form sends only the organization name and hostname through named
 workflow keys. Both the browser's one-item input array and a direct object invocation
 are accepted. The workflow requires an authenticated envelope user and reads trusted
-provisioning settings from the platform's enabled `servers_config` record of type
+provisioning settings from the platform's enabled `configs` record of type
 `organizations`; provider credentials and policies are not accepted from the form.
 
 The execution order is:

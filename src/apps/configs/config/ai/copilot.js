@@ -1,7 +1,7 @@
-/** Copilot AI Provider seed for servers_config. */
+/** Copilot AI Provider seed for configs. */
 export default {
     "method": "object.update",
-    "array": "servers_config",
+    "array": "configs",
     "upsert": true,
     "object": [
         {

@@ -14,7 +14,7 @@ async function setup(options = {}) {
     const settings = { storageProvisioning: { cloudProvider: 'AWS', regionName: 'US_EAST_1', cidrBlock: '192.0.2.0/24' }, clusterProvisioning: { scaleIn: { minClusterSize: 0 } } };
     if (options.missingNetwork) delete settings.storageProvisioning.cidrBlock;
     const records = new Map([
-        ['platform:servers_config', [{ _id: 'settings', type: 'organizations', enabled: true, config: settings }]],
+        ['platform:configs', [{ _id: 'settings', type: 'organizations', enabled: true, config: settings }]],
         ['platform:keys', [{ _id: 'user-key', key: 'user', type: 'user', array: 'contacts', email: 'user@test', password: 'stored-hash' },
             { _id: 'default-key', type: 'key', default: true, methods: { object: { read: { contacts: { '_id.$eq': '$user_id' } } }, signIn: true } }]],
         ['platform:contacts', [{ _id: 'user', name: 'User', location: options.noLocation ? undefined : { latitude: 20, longitude: 30 } }]]

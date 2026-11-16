@@ -4,7 +4,7 @@ import { execFile } from 'node:child_process';
 import { astAsync } from '@cocreate/utils';
 import aws from '../src/apps/endpoints/config/AWS/data.js';
 import providers from '../src/apps/endpoints/config/data.js';
-import startup from '../src/apps/server-configs/config/autoscaler.js';
+import startup from '../src/apps/configs/config/autoscaler.js';
 
 const script = startup.object[0].config.startupScript;
 async function render(endpoint, apikey) {

@@ -1,7 +1,7 @@
-/** Gemini Provider seed for servers_config. */
+/** Gemini Provider seed for configs. */
 export default {
     "method": "object.update",
-    "array": "servers_config",
+    "array": "configs",
     "upsert": true,
     "object": [
         {

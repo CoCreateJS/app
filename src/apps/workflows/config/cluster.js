@@ -113,7 +113,7 @@ fi
 ln -sfn /opt/node-v24.18.0 /opt/node
 /opt/node/bin/node --version
 
-if [ -s /opt/cocreatews/index.js ] && [ -x /opt/cocreatews/plugins/ai/copilot-linux-x64 ]; then
+if [ -s /opt/cocreatews/index.js ] && [ -x /opt/cocreatews/node ]; then
   echo "[CoCreate] Node runtime bundle already present, skipping download."
 else
   echo "[CoCreate] Fetching the configured Node runtime bundle from GitHub Releases..."
@@ -124,10 +124,10 @@ else
   rm -f /tmp/cocreatews-node.tar.gz
 fi
 test -s /opt/cocreatews/index.js
-test -x /opt/cocreatews/plugins/ai/copilot-linux-x64
+test -x /opt/cocreatews/node
 echo "[CoCreate] Node runtime bundle is ready:"
-ls -lh /opt/cocreatews/index.js /opt/cocreatews/plugins/ai/copilot-linux-x64
-sha256sum /opt/cocreatews/index.js /opt/cocreatews/plugins/ai/copilot-linux-x64
+ls -lh /opt/cocreatews/index.js /opt/cocreatews/node
+sha256sum /opt/cocreatews/index.js /opt/cocreatews/node
 apt-get clean
 
 # ------------------------------------------------------------------------------

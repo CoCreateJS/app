@@ -1,7 +1,7 @@
-/** Oracle Cloud Infrastructure (OCI) cloud catalog for servers_config. */
+/** Oracle Cloud Infrastructure (OCI) cloud catalog for configs. */
 export default {
     "method": "object.update",
-    "array": "servers_config",
+    "array": "configs",
     "upsert": true,
     "object": [
         {

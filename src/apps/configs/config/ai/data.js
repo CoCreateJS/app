@@ -1,7 +1,7 @@
-/** Server AI Defaults seed for servers_config. */
+/** Server AI Defaults seed for configs. */
 export default {
     "method": "object.update",
-    "array": "servers_config",
+    "array": "configs",
     "upsert": true,
     "object": [
         {

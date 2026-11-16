@@ -1,4 +1,4 @@
-/** Signup orchestration. Provider settings are read from platform servers_config. */
+/** Signup orchestration. Provider settings are read from platform configs. */
 export default {
     "method": "object.update",
     "array": "workflows",
@@ -29,7 +29,7 @@ export default {
                     "result": {
                         "$crud.send": {
                             "method": "object.read",
-                            "array": "servers_config",
+                            "array": "configs",
                             "filter": {
                                 "query": {
                                     "type": "organizations",
@@ -44,7 +44,7 @@ export default {
                             "$true": {
                                 "$if.$result.error.length.$gt": {
                                     "0": {
-                                        "$throw": "Unable to read servers_config."
+                                        "$throw": "Unable to read configs."
                                     }
                                 }
                             }
@@ -53,7 +53,7 @@ export default {
                     "checkSuccess": {
                         "$if.$result.success.$eq": {
                             "$false": {
-                                "$throw": "Unable to read servers_config."
+                                "$throw": "Unable to read configs."
                             }
                         }
                     },
@@ -61,7 +61,7 @@ export default {
                         "$if.$result.object.0.$exists": {
                             "$true": {},
                             "$else": {
-                                "$throw": "Missing servers_config record."
+                                "$throw": "Missing configs record."
                             }
                         }
                     },

@@ -1,7 +1,7 @@
-/** Hetzner Cloud cloud catalog for servers_config. */
+/** Hetzner Cloud cloud catalog for configs. */
 export default {
     "method": "object.update",
-    "array": "servers_config",
+    "array": "configs",
     "upsert": true,
     "object": [
         {

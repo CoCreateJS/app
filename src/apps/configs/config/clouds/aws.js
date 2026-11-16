@@ -1,7 +1,7 @@
-/** Amazon Web Services (AWS) cloud catalog for servers_config. */
+/** Amazon Web Services (AWS) cloud catalog for configs. */
 export default {
     "method": "object.update",
-    "array": "servers_config",
+    "array": "configs",
     "upsert": true,
     "object": [
         {

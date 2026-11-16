@@ -1,7 +1,7 @@
-/** OpenAI Provider seed for servers_config. */
+/** OpenAI Provider seed for configs. */
 export default {
     "method": "object.update",
-    "array": "servers_config",
+    "array": "configs",
     "upsert": true,
     "object": [
         {

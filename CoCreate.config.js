@@ -11,8 +11,6 @@ export default {
     directories: [
         {
             entry: "./src",
-            storage: "db",
-            database: "dev",
             array: "files",
             languages: ["en", "es", "fr", "pt", "nl", "ht", "gn"],
             exclude: ["/admin/", "/apps/", "/config/"],
@@ -29,8 +27,6 @@ export default {
         },
         {
             entry: "./src",
-            storage: "db",
-            database: "dev",
             array: "files",
             languages: ["en", "es", "fr", "pt", "nl", "ht", "gn"],
             include: ["/admin/", "/apps/"],

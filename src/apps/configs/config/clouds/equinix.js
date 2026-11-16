@@ -1,7 +1,7 @@
-/** Equinix Metal cloud catalog for servers_config. */
+/** Equinix Metal cloud catalog for configs. */
 export default {
     "method": "object.update",
-    "array": "servers_config",
+    "array": "configs",
     "upsert": true,
     "object": [
         {

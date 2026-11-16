@@ -4,44 +4,28 @@
   "upsert": true,
   "object":[
   {
-    "_id": "68c7bbf505da6ef2c862092c",
+    "_id": "5ff747727005da1c272740ab",
     "host": [
       {
-        "array": "",
-        "database": "",
-        "name": "CoCreateJS.CoCreateJS.com",
-        "storage": ""
+        "storage": "production",
+        "database": "app",
+        "name": "CoCreateJS.com"
       },
       {
-        "array": "",
-        "database": "",
-        "name": "CoCreateJS.com",
-        "storage": ""
+        "storage": "dev",
+        "database": "app",
+        "name": "dev.CoCreateJS.com"
       },
       {
-        "array": "",
-        "database": "dev",
-        "name": "dev.CoCreateJS.com",
-        "storage": ""
-      },
-      {
-        "array": "",
-        "database": "test",
-        "name": "test.CoCreateJS.com",
-        "storage": ""
+        "storage": "test",
+        "database": "app",
+        "name": "test.CoCreateJS.com"
       }
     ],
-    "name": "Geneomes",
-    "storage": [
-      {
-        "name": "mongodb",
-        "provider": "mongodb",
-        "url": "mongodb+srv://db_user:fYS1wQz7JxXhhAlx@CoCreateJS.egpfpy7.mongodb.net/?retryWrites=true&w=majority"
-      }
-    ],
-    "city": "Tamarindo",
+    "name": "CoCreateJS.com",
+    "city": "New York",
     "contact_person": "",
-    "country": "Costa Rica",
+    "country": "USA",
     "cover_image": [],
     "created_at": "",
     "description": "",

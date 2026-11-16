@@ -1,5 +1,4 @@
 import { dependency, lazyLoad } from '@cocreate/lazy-loader';
-import Organizations from '@cocreate/organizations';
 
 if (typeof window !== 'undefined') {
     window.CoCreateConfig = window.CoCreateConfig || {};
@@ -365,7 +364,6 @@ lazyLoad("position", "[draggable], [draggable-query], [clonable-query], [droppab
 lazyLoad("scroll", "[scroll], [scroll-to], [scrollable-x], [scrollable-y]", () => import(/* webpackChunkName: "scroll" */ "@cocreate/scroll"));
 lazyLoad("scrollbar", "[scrollbar]", () => import(/* webpackChunkName: "scrollbar" */ "@cocreate/scrollbar"));
 lazyLoad("resize", "[resize], [height='auto']", () => import(/* webpackChunkName: "resize" */ "@cocreate/resize"));
-dependency("organizations", Promise.resolve(Organizations));
 lazyLoad("users", "[session], [actions*='signUp'], [actions*='signIn'], [actions*='inviteUser'], [actions*='acceptInvite'], [actions*='forgotPassword'], [actions*='resetPassword'], [actions*='signOut'], [user-status]", () => import(/* webpackChunkName: "users" */ "@cocreate/users"));
 lazyLoad("search", "[search-query]", () => import(/* webpackChunkName: "search" */ "@cocreate/search"));
 lazyLoad("clipboard", "[actions*='clipboard'], [clipboard], [clipboard-query]", () => import(/* webpackChunkName: "clipboard" */ "@cocreate/clipboard"));

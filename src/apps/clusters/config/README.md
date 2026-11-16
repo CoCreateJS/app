@@ -4,7 +4,7 @@ Top-level `cluster.clouds` and `cluster.dns` are optional API-ID whitelists.
 Missing values, empty strings and empty arrays allow all enabled connections of the
 corresponding type in the executing organization. A nonempty selection restricts
 connections to those IDs; a single ID string is also accepted for the current UI.
-Matching server configs supply catalogs, and only catalogs with an eligible connection
+Matching configs supply catalogs, and only catalogs with an eligible connection
 participate in placement. An unusable explicit selection never broadens access.
 
 `cluster.dns` is separate from a launch's `deployment.dns`: each selected POP

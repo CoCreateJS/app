@@ -6,7 +6,7 @@ import Workflows from '../../CoCreate-modules/workflows/src/server.js';
 import { init as initManager } from '../../CoCreate-modules/cluster/src/manager.js';
 import { ServerMesh } from '../../CoCreate-modules/cluster/src/mesh/index.js';
 import serverSeed from '../src/apps/workflows/config/server.js';
-import startupSeed from '../src/apps/server-configs/config/autoscaler.js';
+import startupSeed from '../src/apps/configs/config/autoscaler.js';
 import aws from '../src/apps/endpoints/config/AWS/data.js';
 import providers from '../src/apps/endpoints/config/data.js';
 

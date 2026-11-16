@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en" data-theme="default" data-theme-colors="default">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content="noindex, nofollow" />
+		<meta name="color-scheme" content="light dark" />
+		<title>Connect to CoCreate</title>
+		<link rel="shortcut icon" href="/assets/images/icons/favicon.ico" />
+		<link plugins />
+		<link href="/assets/css/index.css" rel="stylesheet" />
+		<link href="./oauth.css" rel="stylesheet" />
+	</head>
+	<body>
+		<main
+			class="oauth-flow d-flex align-items-center justify-content-center"
+			state-id="oauthFlow"
+			data-view="signin">
+			<section class="oauth-flow-card p-4 p-md-5" data-screen="signin" aria-labelledby="signin-title">
+				<div class="oauth-flow-step mb-4"><strong>Step 1 of 3</strong><span aria-hidden="true">·</span><span>Sign in to CoCreate</span></div>
+				<div class="d-flex align-items-center gap-3">
+					<img src="/assets/images/logos/logo.png" alt="CoCreate" height="38" />
+					<span class="text-muted" aria-hidden="true">→</span>
+					<span class="oauth-flow-brand">ChatGPT</span>
+				</div>
+				<div class="oauth-flow-divider"></div>
+				<h1 id="signin-title" class="h4 mb-2">Sign in to continue</h1>
+				<p class="text-muted mb-4">Sign in to CoCreate, then review the access requested by this connection.</p>
+				<form array="contacts" class="coform" autocomplete="on" role="form" aria-label="Sign in to CoCreate">
+					<div class="mb-3">
+						<label for="oauth-email" class="form-label">Email</label>
+						<input type="email" class="form-control" id="oauth-email" name="email" key="email" autocomplete="email" required />
+					</div>
+					<div class="mb-3">
+						<label for="oauth-password" class="form-label">Password</label>
+						<input type="password" class="form-control" id="oauth-password" name="password" key="password" autocomplete="current-password" required />
+					</div>
+					<button class="btn btn-primary btn-spinner w-100" type="button" actions="validate, disabled, signIn, disabled, action($closest main #oauth-signin-success)">
+						<span class="button-text">Sign in and review access</span>
+						<span class="spinner-border spinner-border-sm" hidden role="status" aria-label="Signing in"></span>
+					</button>
+				</form>
+				<button id="oauth-signin-success" type="button" hidden click-query="$closest main" click.data-view="consent"></button>
+				<a class="btn btn-link w-100 mt-2" href="./index.html">Back to regular sign-in</a>
+				<p class="text-muted small text-center mt-3 mb-0">Your CoCreate credentials are sent through the existing sign-in flow.</p>
+			</section>
+
+			<section class="oauth-flow-card p-4 p-md-5" data-screen="consent" aria-labelledby="consent-title">
+				<div class="oauth-flow-step mb-4"><span>Step 1: Sign in</span><span aria-hidden="true">·</span><strong>Step 2: Review access</strong><span aria-hidden="true">·</span><span>Step 3: Return</span></div>
+				<div class="d-flex align-items-center gap-3">
+					<img src="/assets/images/logos/logo.png" alt="CoCreate" height="38" />
+					<span class="text-muted" aria-hidden="true">→</span>
+					<span class="oauth-flow-brand">ChatGPT</span>
+				</div>
+				<div class="oauth-flow-divider"></div>
+				<h1 id="consent-title" class="h4 mb-2">ChatGPT wants to connect to CoCreate</h1>
+				<p class="text-muted mb-4">Review the account and access requested before continuing.</p>
+				<div class="border rounded p-3 mb-4">
+					<span class="text-muted small d-block mb-1">COCREATE ACCOUNT</span>
+					<strong>You are signed in</strong>
+					<span class="text-muted d-block small">The signed-in account’s existing permissions remain in force.</span>
+					<label class="form-label small text-muted d-block mt-3 mb-1" for="oauth-organization">COCREATE ORGANIZATION</label>
+					<select class="form-select" id="oauth-organization" aria-label="CoCreate organization">
+						<option selected>Demo organization</option>
+					</select>
+				</div>
+				<h2 class="h6 mb-1">Requested access</h2>
+				<p class="text-muted small mb-2">CoCreate still checks this account’s permissions for every action.</p>
+				<div class="mb-4" aria-label="Requested permissions">
+					<div class="oauth-flow-scope">
+						<span class="oauth-flow-scope-icon" aria-hidden="true">⌕</span>
+						<div><strong class="d-block">Read CoCreate data</strong><span class="text-muted small">Read records the signed-in account is allowed to access.</span></div>
+					</div>
+					<div class="oauth-flow-scope">
+						<span class="oauth-flow-scope-icon" aria-hidden="true">✎</span>
+						<div><strong class="d-block">Make permitted changes</strong><span class="text-muted small">Create, update, or delete records only when CoCreate authorization allows it.</span></div>
+					</div>
+				</div>
+				<div class="oauth-flow-note p-3 mb-4" role="note">
+					<strong class="d-block mb-1">Consent flow preview</strong>
+					<span class="small">This screen previews the consent decision only. It does not yet create an OAuth authorization code or token.</span>
+				</div>
+				<div class="d-grid gap-2">
+				<button class="btn btn-primary" type="button" state-to="oauthFlow" state.data-view="approved">Allow and continue</button>
+				<button class="btn btn-outline-secondary" type="button" state-to="oauthFlow" state.data-view="denied">Cancel</button>
+				</div>
+				<p class="text-muted small text-center mt-4 mb-0">You can disconnect this connection later from your CoCreate account.</p>
+			</section>
+
+			<section class="oauth-flow-card p-4 p-md-5 text-center" data-screen="approved" aria-labelledby="approved-title">
+				<div class="oauth-flow-step justify-content-center mb-4"><span>Step 1: Sign in</span><span aria-hidden="true">·</span><span>Step 2: Review access</span><span aria-hidden="true">·</span><strong>Step 3: Return</strong></div>
+				<div class="d-flex align-items-center justify-content-center gap-3">
+					<img src="/assets/images/logos/logo.png" alt="CoCreate" height="38" />
+					<span class="text-muted" aria-hidden="true">→</span>
+					<span class="oauth-flow-brand">ChatGPT</span>
+				</div>
+				<div class="oauth-flow-divider"></div>
+				<div class="avatar-md bg-success-subtle text-success rounded-circle d-inline-flex align-items-center justify-content-center mb-3" aria-hidden="true">✓</div>
+				<h1 id="approved-title" class="h4 mb-2">Access approved</h1>
+				<p class="text-muted mb-4">The user approved the requested access in this UI preview.</p>
+				<div class="oauth-flow-note p-3 text-start mb-4" role="note">
+					<strong class="d-block mb-1">No authorization was performed</strong>
+					<span class="small">This preview creates no authorization code, access token, or connection. The final redirect is represented as a view only.</span>
+				</div>
+				<button class="btn btn-primary w-100" type="button" state-to="oauthFlow" state.data-view="signin">Restart flow</button>
+			</section>
+
+			<section class="oauth-flow-card p-4 p-md-5 text-center" data-screen="denied" aria-labelledby="denied-title">
+				<div class="d-flex align-items-center justify-content-center gap-3">
+					<img src="/assets/images/logos/logo.png" alt="CoCreate" height="38" />
+					<span class="text-muted" aria-hidden="true">→</span>
+					<span class="oauth-flow-brand">ChatGPT</span>
+				</div>
+				<div class="oauth-flow-divider"></div>
+				<h1 id="denied-title" class="h4 mb-2">Connection canceled</h1>
+				<p class="text-muted mb-4">You didn’t approve ChatGPT’s request to connect to CoCreate.</p>
+				<div class="oauth-flow-note p-3 text-start mb-4" role="note">
+					<strong class="d-block mb-1">Static UI preview</strong>
+					<span class="small">In the real flow, CoCreate would return an access-denied response to ChatGPT. This preview sends no response or token.</span>
+				</div>
+				<button class="btn btn-outline-secondary w-100" type="button" state-to="oauthFlow" state.data-view="consent">Back to access review</button>
+			</section>
+		</main>
+		<script src="../dist/CoCreate.js" organization></script>
+	</body>
+</html>

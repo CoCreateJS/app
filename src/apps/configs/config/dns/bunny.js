@@ -1,7 +1,7 @@
-/** Bunny dns provider catalog seed for servers_config. */
+/** Bunny dns provider catalog seed for configs. */
 export default {
     "method": "object.update",
-    "array": "servers_config",
+    "array": "configs",
     "upsert": true,
     "object": [
         {
