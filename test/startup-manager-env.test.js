@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { execFileSync } from 'node:child_process';
-import { init } from '../../CoCreate-modules/workflows/src/server.js';
+import { init } from '../../modules/workflows/src/server.js';
 import cluster from '../src/apps/workflows/config/cluster.js';
 
 test('startup inserts the supplied manager object as quoted environment JSON', async () => {

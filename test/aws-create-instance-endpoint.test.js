@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { security } from '@cocreate/utils';
-import { init } from '../../CoCreate-modules/api/src/server.js';
+import { init } from '../../modules/api/src/server.js';
 import cloudSeed from '../src/apps/apis/config/cloud.js';
 import endpointSeed from '../src/apps/endpoints/config/AWS/data.js';
 

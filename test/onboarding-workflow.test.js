@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { createPrivateKey } from 'node:crypto';
-import { init } from '../../CoCreate-modules/workflows/src/server.js';
+import { init } from '../../modules/workflows/src/server.js';
 import onboarding from '../src/apps/workflows/config/onboarding.js';
 import organization from '../src/apps/workflows/config/organization.js';
 import storage from '../src/apps/workflows/config/storage.js';

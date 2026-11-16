@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import Workflows from '../../CoCreate-modules/workflows/src/server.js';
+import Workflows from '../../modules/workflows/src/server.js';
 import seed from '../src/apps/workflows/config/mesh.js';
 import { createUpdate, queryData } from '@cocreate/utils';
 
@@ -67,7 +67,7 @@ test('the configured workflow persists failure evidence through the real CoCreat
     const { mkdtemp, rm } = await import('node:fs/promises');
     const { tmpdir } = await import('node:os');
     const { join } = await import('node:path');
-    const { createDB } = await import('../../CoCreate-modules/db/src/index.js');
+    const { createDB } = await import('../../modules/db/src/index.js');
     const directory = await mkdtemp(join(tmpdir(), 'peer-failure-workflow-'));
     t.after(() => rm(directory, { recursive: true, force: true }));
     const db = createDB({ directory, memoryCache: false });
@@ -79,7 +79,7 @@ test('the configured workflow persists failure evidence through the real CoCreat
         assert.equal(result.success, true, result.error);
     }
     const { EventEmitter } = await import('node:events');
-    const { ServerMesh } = await import('../../CoCreate-modules/cluster/src/mesh/index.js');
+    const { ServerMesh } = await import('../../modules/cluster/src/mesh/index.js');
     const server = Object.assign(new EventEmitter(), {
         id: 'observer', organization_id, host: 'platform.test', isPrimary: true, crud: { send }, send() {}
     });

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
-import actionsHelper from '../../CoCreate-modules/actions/test/helpers/actions.cjs';
+import actionsHelper from '../../modules/actions/test/helpers/actions.cjs';
 
 const markup = readFileSync(new URL('../src/auth/signup.html', import.meta.url), 'utf8');
 const attributes = id => Object.fromEntries([...markup.match(new RegExp(`<button\\s+id="${id}"[\\s\\S]*?<\\/button>`))[0]

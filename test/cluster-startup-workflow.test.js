@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { execFileSync } from 'node:child_process';
-import { init as initWorkflows } from '../../CoCreate-modules/workflows/src/server.js';
+import { init as initWorkflows } from '../../modules/workflows/src/server.js';
 import clusterSeed from '../src/apps/workflows/config/cluster.js';
 
 for (const environment of [undefined, 'server_id=node-1\ncluster_id=cluster-1']) {

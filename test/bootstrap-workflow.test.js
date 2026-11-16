@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import Workflows from '../../CoCreate-modules/workflows/src/server.js';
-import { init as initOrganizations } from '../../CoCreate-modules/organizations/src/server/index.js';
-import config from '../../CoCreate-modules/config/src/server.js';
-import { getStorage } from '../../CoCreate-modules/crud/src/server/getStorage.js';
+import Workflows from '../../modules/workflows/src/server.js';
+import { init as initOrganizations } from '../../modules/organizations/src/server/index.js';
+import config from '../../modules/config/src/server.js';
+import { getStorage } from '../../modules/crud/src/server/getStorage.js';
 import seed from '../src/apps/workflows/config/storage.js';
 import organizationSeed from '../src/apps/workflows/config/organization.js';
 import repositorySeed from '../src/apps/workflows/config/repository.js';

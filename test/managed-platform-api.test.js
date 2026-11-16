@@ -2,13 +2,13 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { createServer } from 'node:http';
 import { once } from 'node:events';
-import { crudServer } from '../../CoCreate-modules/crud/src/server/index.js';
+import { crudServer } from '../../modules/crud/src/server/index.js';
 import Config from '@cocreate/config';
-import authorize from '../../CoCreate-modules/authorize/src/index.js';
+import authorize from '../../modules/authorize/src/index.js';
 import apiKeySeed from '../src/apps/api-keys/config/data.json' with { type: 'json' };
-import { init as initManager } from '../../CoCreate-modules/cluster/src/manager.js';
-import { init as initApi } from '../../CoCreate-modules/api/src/server.js';
-import { deleteServer } from '../../CoCreate-modules/autoscaler/src/cleanup.js';
+import { init as initManager } from '../../modules/cluster/src/manager.js';
+import { init as initApi } from '../../modules/api/src/server.js';
+import { deleteServer } from '../../modules/autoscaler/src/cleanup.js';
 
 const managementRole = apiKeySeed.object.find(item => item._id === '6b0700000000000000000021');
 

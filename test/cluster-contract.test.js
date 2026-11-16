@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { init as initWorkflows } from '../../CoCreate-modules/workflows/src/server.js';
+import { init as initWorkflows } from '../../modules/workflows/src/server.js';
 import seed from '../src/apps/workflows/config/cluster.js';
 
 async function persist(cluster) {
