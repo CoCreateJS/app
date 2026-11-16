@@ -18,8 +18,8 @@ async function resolve(name, data) {
 }
 
 test('template endpoint copies only the default branch into a private managed repository', async () => {
-    const result = await resolve('create-repository-from-template', { name: 'tenant-id', templateOwner: 'CoCreateJS', templateRepository: 'CoCreate-app-template' });
-    assert.equal(result.endpoint, '/repos/CoCreateJS/CoCreate-app-template/generate');
+    const result = await resolve('create-repository-from-template', { name: 'tenant-id', templateOwner: 'CoCreateJS', templateRepository: 'app-template' });
+    assert.equal(result.endpoint, '/repos/CoCreateJS/app-template/generate');
     assert.deepEqual(result.data, { owner: 'managed-owner', name: 'tenant-id', private: true, include_all_branches: false });
     assert.equal(base.object.some(item => item.name === 'create-organization-repository'), false, 'Do not retain the empty-repository creation path');
 });

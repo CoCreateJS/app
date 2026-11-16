@@ -34,7 +34,7 @@ export default {
             "repositoryProvisioning": {
                 "api": "github-organizations",
                 "templateOwner": "CoCreateJS",
-                "templateRepository": "CoCreate-app-template"
+                "templateRepository": "app-template"
             }
         }
     }

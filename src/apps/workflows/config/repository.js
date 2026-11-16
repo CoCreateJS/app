@@ -28,7 +28,7 @@ export default {
                             "data": {
                                 "name": "$data.organizationId",
                                 "templateOwner": "CoCreateJS",
-                                "templateRepository": "CoCreate-app-template"
+                                "templateRepository": "app-template"
                             }
                         }
                     },
