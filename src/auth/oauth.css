@@ -9,6 +9,18 @@
 	font-family: var(--coc-font-family-primary, inherit);
 }
 
+#oauth-error {
+	position: fixed;
+	z-index: 2;
+	bottom: 16px;
+	left: 16px;
+	max-width: min(480px, calc(100vw - 32px));
+	padding: 10px 14px;
+	border: 1px solid var(--oauth-border);
+	border-radius: 8px;
+	background: var(--coc-card-bg, #fff);
+}
+
 .oauth-flow * {
 	box-sizing: border-box;
 }
@@ -24,6 +36,7 @@
 }
 
 .oauth-flow[data-view="signin"] [data-screen="signin"],
+.oauth-flow[data-view="checking"] [data-screen="checking"],
 .oauth-flow[data-view="consent"] [data-screen="consent"],
 .oauth-flow[data-view="approved"] [data-screen="approved"],
 .oauth-flow[data-view="denied"] [data-screen="denied"] {

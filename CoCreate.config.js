@@ -22,6 +22,7 @@ export default {
                 path: "{{path}}",
                 pathname: "{{pathname}}",
                 "content-type": "{{content-type}}",
+                public: "true",
                 headers: { "cache-control": "public, max-age=31536000" }
             }
         },
@@ -38,6 +39,7 @@ export default {
                 path: "{{path}}",
                 pathname: "{{pathname}}",
                 "content-type": "{{content-type}}",
+                public: "false",
                 headers: { "cache-control": "private, max-age=31536000" }
             }
         },
