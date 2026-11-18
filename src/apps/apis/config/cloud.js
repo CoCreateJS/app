@@ -44,13 +44,13 @@ export default {
                     ]]
                 },
                 "x-amz-date": {
-                    "$security.transform": [
+                    "$kms.transform": [
                         "",
                         [{ "op": "timestamp", "format": "iso-basic" }]
                     ]
                 },
                 "Authorization": {
-                    "$security.createAwsSigV4Token": [
+                    "$kms.createAwsSigV4Token": [
                         {
                             "method": "$payload.method",
                             "uri": "$payload.endpoint",
@@ -79,7 +79,7 @@ export default {
                     ]
                 }
             },
-            "description": "Amazon Web Services (AWS) infrastructure API configuration leveraging $security.signHmac and $concat primitives for request signature authorization.",
+            "description": "Amazon Web Services (AWS) infrastructure API configuration leveraging $kms.signHmac and $concat primitives for request signature authorization.",
             "enabled": true
         },
         {
@@ -96,7 +96,7 @@ export default {
                     "$concat": [
                         "Bearer ",
                         {
-                            "$security.generateJWT": [
+                            "$kms.generateJWT": [
                                 {
                                     "header": { "alg": "RS256", "typ": "JWT" },
                                     "payload": {
@@ -114,7 +114,7 @@ export default {
                 },
                 "Content-Type": "application/json"
             },
-            "description": "Google Cloud Platform (GCP) REST API integration using $security.generateJWT for OAuth 2.0 client assertion authorization.",
+            "description": "Google Cloud Platform (GCP) REST API integration using $kms.generateJWT for OAuth 2.0 client assertion authorization.",
             "enabled": true
         },
         {
@@ -167,7 +167,7 @@ export default {
                     "$concat": [
                         "Signature algorithm=\"hmac-sha256\",headers=\"date (request-target) host\",signature=",
                         {
-                            "$security.signHmac": [
+                            "$kms.signHmac": [
                                 {
                                     "$concat": [
                                         "$config.tenancyId",
@@ -186,7 +186,7 @@ export default {
                 },
                 "Content-Type": "application/json"
             },
-            "description": "Oracle Cloud Infrastructure (OCI) Core Services API integration using $security.signHmac for signature header generation.",
+            "description": "Oracle Cloud Infrastructure (OCI) Core Services API integration using $kms.signHmac for signature header generation.",
             "enabled": true
         },
         {

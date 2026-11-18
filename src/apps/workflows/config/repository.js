@@ -18,7 +18,7 @@ export default {
                     }
                 },
                 "key": {
-                    "$security.generateSshKeyPair": []
+                    "$kms.generateSshKeyPair": []
                 },
                 "repository": {
                     "result": {

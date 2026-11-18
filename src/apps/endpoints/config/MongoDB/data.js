@@ -32,7 +32,7 @@ export default {
                                 "$concat": [
                                     "Basic ",
                                     {
-                                        "$security.base64Encode": {
+                                        "$kms.base64Encode": {
                                             "$concat": [
                                                 "$config.clientId",
                                                 ":",
@@ -102,7 +102,7 @@ export default {
                                 "$concat": [
                                     "Basic ",
                                     {
-                                        "$security.base64Encode": {
+                                        "$kms.base64Encode": {
                                             "$concat": [
                                                 "$config.clientId",
                                                 ":",
@@ -196,7 +196,7 @@ export default {
                                 "$concat": [
                                     "Basic ",
                                     {
-                                        "$security.base64Encode": {
+                                        "$kms.base64Encode": {
                                             "$concat": [
                                                 "$config.clientId",
                                                 ":",
@@ -253,7 +253,7 @@ export default {
                                 "$concat": [
                                     "Basic ",
                                     {
-                                        "$security.base64Encode": {
+                                        "$kms.base64Encode": {
                                             "$concat": [
                                                 "$config.clientId",
                                                 ":",
@@ -319,7 +319,7 @@ export default {
                                 "$concat": [
                                     "Basic ",
                                     {
-                                        "$security.base64Encode": {
+                                        "$kms.base64Encode": {
                                             "$concat": [
                                                 "$config.clientId",
                                                 ":",
@@ -378,7 +378,7 @@ export default {
                                 "$concat": [
                                     "Basic ",
                                     {
-                                        "$security.base64Encode": {
+                                        "$kms.base64Encode": {
                                             "$concat": [
                                                 "$config.clientId",
                                                 ":",
@@ -455,7 +455,7 @@ export default {
                                 "$concat": [
                                     "Basic ",
                                     {
-                                        "$security.base64Encode": {
+                                        "$kms.base64Encode": {
                                             "$concat": [
                                                 "$config.clientId",
                                                 ":",
@@ -514,7 +514,7 @@ export default {
                                 "$concat": [
                                     "Basic ",
                                     {
-                                        "$security.base64Encode": {
+                                        "$kms.base64Encode": {
                                             "$concat": [
                                                 "$config.clientId",
                                                 ":",

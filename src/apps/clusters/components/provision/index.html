@@ -270,7 +270,7 @@
 								array="servers"
 								object
 								key="name"
-								value="$concat([$query($closest #provision-workflow #cluster-configuration-form [key='name']).getValue(), '-', '{{object.name}}', '-', $query($closest form #first-deployment-region-options input:checked).getValue(), '-', $uuid(6)])"
+								value="$concat([$query($closest #provision-workflow #cluster-configuration-form [key='name']).getValue(), '-', '{{object.name}}', '-', $query($closest form #first-deployment-region-options input:checked).getValue(), '-', $uid(6)])"
 								{{object.name}}-key="name"
 								{{object.name}}-response="false" />
 							<div

@@ -4,7 +4,7 @@ import { astAsync } from '@cocreate/utils';
 import Config from '@cocreate/config';
 import Workflows from '../../modules/workflows/src/server.js';
 import { init as initManager } from '../../modules/cluster/src/manager.js';
-import { ServerMesh } from '../../modules/cluster/src/mesh/index.js';
+import { ServerMesh } from '../../modules/cluster/src/send/socket/index.js';
 import serverSeed from '../src/apps/workflows/config/server.js';
 import startupSeed from '../src/apps/configs/config/autoscaler.js';
 import aws from '../src/apps/endpoints/config/AWS/data.js';

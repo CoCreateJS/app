@@ -458,14 +458,14 @@ Illustrative webhooks object. The webhook path is exposed at /webhooks/stripe/pa
   "signatureParts": { "$header.stripe-signature.split": "," },
   "timestampParts": { "$signatureParts.0.split": "=" },
   "expectedSignature": {
-    "$security.createWebhookSignature": [
+    "$kms.createWebhookSignature": [
       "$rawBody",
       "$config.webhookSecret",
       { "timestamp": "$timestampParts.1", "format": "stripe" }
     ]
   },
   "authenticated": {
-    "$security.timingSafeEqual": [
+    "$kms.timingSafeEqual": [
       "$expectedSignature",
       "$header.stripe-signature"
     ]
@@ -904,45 +904,6 @@ Inspect configuration and use a determine action before invoking scaleOut or sca
                 },
                 {
                     action: "determineScaleInTarget"
-                }
-            ],
-            sources: []
-        },
-        {
-            _id: "65f8cb447b39a3c1a8904e58",
-            name: "storage",
-            description: "Primary-owned shared server runtime storage",
-            default: true,
-            enabled: true,
-            instructions: `Server storage is shared, nonpersistent runtime state exposed as server.storage. The primary process owns the only storage Map. Workers do not retain local copies; worker calls use server.send internally to dispatch storage.get, storage.set, storage.delete, storage.size, or storage.clear to the primary and receive the result through the originating UUID.
-
-Use manage_server_storage from AI tools. get returns the value for one key. set replaces one key's value and returns true. delete returns whether the key existed. size returns the number of stored keys. clear removes every entry and returns true. Values must be suitable for IPC serialization.
-
-Storage and send are separate layers: storage defines shared-state operations, while server.send is the IPC transport used underneath worker calls. Do not manually construct internal storage.* IPC envelopes when server.storage or manage_server_storage is available.
-
-Server storage is not CRUD, database storage, organization storage, a filesystem, or a durable cache. Its contents exist only in the running primary process and are lost when that process restarts. Use CRUD for data that must persist. These operations are restricted to the platform organization. Treat clear as destructive and use it only when removal of all shared runtime state is explicitly intended.`,
-            examples: [
-                {
-                    action: "set",
-                    key: "ai.instructions.ast",
-                    value: {
-                        loaded: true,
-                        version: 1
-                    }
-                },
-                {
-                    action: "get",
-                    key: "ai.instructions.ast"
-                },
-                {
-                    action: "delete",
-                    key: "ai.instructions.ast"
-                },
-                {
-                    action: "size"
-                },
-                {
-                    action: "clear"
                 }
             ],
             sources: []

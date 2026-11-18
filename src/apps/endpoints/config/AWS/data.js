@@ -41,7 +41,7 @@ export default {
                 },
                 "x-amz-target": "AmazonSSM.GetParameter",
                 "x-amz-date": {
-                    "$security.transform": [
+                    "$kms.transform": [
                         "",
                         [
                             {
@@ -52,7 +52,7 @@ export default {
                     ]
                 },
                 "Authorization": {
-                    "$security.createAwsSigV4Token": [
+                    "$kms.createAwsSigV4Token": [
                         {
                             "method": "$payload.method",
                             "uri": "/",
@@ -97,7 +97,7 @@ export default {
             "description": "Calls AWS EC2 RunInstances once with caller-prepared native parameters. Returns the AWS response for the workflow to interpret.",
             "headers": {
                 "Authorization": {
-                    "$security.createAwsSigV4Token": [
+                    "$kms.createAwsSigV4Token": [
                         {
                             "method": "POST",
                             "uri": "/",
@@ -162,7 +162,7 @@ export default {
             "description": "Calls AWS EC2 TerminateInstances once with prepared native parameters. Returns the native response to the workflow.",
             "headers": {
                 "Authorization": {
-                    "$security.createAwsSigV4Token": [
+                    "$kms.createAwsSigV4Token": [
                         {
                             "method": "POST",
                             "uri": "/",
@@ -265,7 +265,7 @@ export default {
                     "RoleName": "OrganizationAccountAccessRole"
                 },
                 "amzDate": {
-                    "$security.transform": [
+                    "$kms.transform": [
                         "",
                         [
                             {
@@ -287,7 +287,7 @@ export default {
                             "x-amz-target": "AWSOrganizationsV20161128.CreateAccount",
                             "x-amz-date": "$amzDate",
                             "Authorization": {
-                                "$security.createAwsSigV4Token": [
+                                "$kms.createAwsSigV4Token": [
                                     {
                                         "method": "POST",
                                         "uri": "/",
@@ -352,7 +352,7 @@ export default {
                     "CreateAccountRequestId": "$createAccountRequestId"
                 },
                 "amzDate": {
-                    "$security.transform": [
+                    "$kms.transform": [
                         "",
                         [
                             {
@@ -374,7 +374,7 @@ export default {
                             "x-amz-target": "AWSOrganizationsV20161128.DescribeCreateAccountStatus",
                             "x-amz-date": "$amzDate",
                             "Authorization": {
-                                "$security.createAwsSigV4Token": [
+                                "$kms.createAwsSigV4Token": [
                                     {
                                         "method": "POST",
                                         "uri": "/",

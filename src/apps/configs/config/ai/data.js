@@ -23,7 +23,7 @@ export default {
                 "allowPlatformCommands": true,
                 "platformCommandTimeout": 600000,
                 "platformCommandMaxOutputBytes": 1048576,
-                "localFsRoot": "/home/ubuntu/Dev/CoCreateJS/modules/server/organizations",
+                "localFsRoot": "/home/ubuntu/Dev/CoCreateJS/server/organizations",
                 "publicPath": "/public",
                 "tools": {
                     "crud": {
@@ -600,36 +600,7 @@ export default {
                             ]
                         }
                     },
-                    "manage_server_storage": {
-                        "description": "Gets, sets, deletes, clears, or checks size of shared cluster state across worker nodes in server.storage. RESTRICTED: Platform-level action reserved exclusively for platform organization matching server.organization_id.",
-                        "parameters": {
-                            "type": "object",
-                            "properties": {
-                                "action": {
-                                    "type": "string",
-                                    "enum": [
-                                        "get",
-                                        "set",
-                                        "delete",
-                                        "size",
-                                        "clear"
-                                    ],
-                                    "description": "Storage operation to perform"
-                                },
-                                "key": {
-                                    "type": "string",
-                                    "description": "Key identifier in shared storage (required for get, set, delete)"
-                                },
-                                "value": {
-                                    "description": "Value to store (required for set action, accepts string, number, object, array, boolean)"
-                                }
-                            },
-                            "required": [
-                                "action"
-                            ]
-                        }
-                    },
-                    "manage_server_cluster": {
+                                        "manage_server_cluster": {
                         "description": "Inspects and controls CoCreate servers. list/get read the servers collection; self returns the running process; control dispatches validated worker or master operations through server.send. Deployment contains provider-agnostic id/type, cloud, dns and location fields. Worker controls are cordon, shed, and drain. restart may target a worker or, when worker is omitted, the master application. reboot and shutdown target the master host. Explain the effect and obtain clear user intent before state-changing operations. RESTRICTED: platform organization only.",
                         "parameters": {
                             "type": "object",

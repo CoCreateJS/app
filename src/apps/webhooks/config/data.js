@@ -41,7 +41,7 @@ export default {
                 "$signatureParts.1.split": "="
             },
             "expectedSignature": {
-                "$security.createWebhookSignature": [
+                "$kms.createWebhookSignature": [
                     "$rawBody",
                     "$config.webhookSecret",
                     {
@@ -59,7 +59,7 @@ export default {
                 ]
             },
             "authenticated": {
-                "$security.timingSafeEqual": [
+                "$kms.timingSafeEqual": [
                     "$expectedSignature",
                     "$receivedSignature"
                 ]

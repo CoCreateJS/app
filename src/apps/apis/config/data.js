@@ -52,11 +52,11 @@ export const seedApisPayload = {
       "key": "twilio_account_sid_placeholder:twilio_auth_token_placeholder",
       "headers": {
         "Authorization": { 
-          "$concat": [ "Basic ", { "$security.base64Encode": "$key" } ] 
+          "$concat": [ "Basic ", { "$kms.base64Encode": "$key" } ] 
         },
         "Content-Type": "application/x-www-form-urlencoded"
       },
-      "description": "Standard Twilio Communications API. Handles automated text-to-speech calls, real-time telephony, and transactional SMS messages. Leverages $security.base64Encode AST directive for Basic authentication.",
+      "description": "Standard Twilio Communications API. Handles automated text-to-speech calls, real-time telephony, and transactional SMS messages. Leverages $kms.base64Encode AST directive for Basic authentication.",
       "status": "active"
     },
     {
@@ -97,7 +97,7 @@ export const seedApisPayload = {
             "$key",
             ", Signature=",
             {
-              "$security.signHmac": {
+              "$kms.signHmac": {
                 "payload": "$key",
                 "secret": "$key",
                 "algorithm": "sha256",
@@ -108,7 +108,7 @@ export const seedApisPayload = {
         },
         "Content-Type": "application/x-amz-json-1.1"
       },
-      "description": "Amazon Web Services (AWS) infrastructure API configuration leveraging $security.signHmac and $concat primitives for request signature authorization.",
+      "description": "Amazon Web Services (AWS) infrastructure API configuration leveraging $kms.signHmac and $concat primitives for request signature authorization.",
       "status": "active"
     },
     {
@@ -121,7 +121,7 @@ export const seedApisPayload = {
           "$concat": [
             "Bearer ",
             {
-              "$security.generateJWT": {
+              "$kms.generateJWT": {
                 "header": { "alg": "RS256", "typ": "JWT" },
                 "payload": {
                   "iss": "gcp-service-account@project.iam.gserviceaccount.com",
@@ -135,7 +135,7 @@ export const seedApisPayload = {
         },
         "Content-Type": "application/json"
       },
-      "description": "Google Cloud Platform (GCP) REST API integration using $security.generateJWT for OAuth 2.0 client assertion authorization.",
+      "description": "Google Cloud Platform (GCP) REST API integration using $kms.generateJWT for OAuth 2.0 client assertion authorization.",
       "status": "active"
     },
     {
@@ -176,7 +176,7 @@ export const seedApisPayload = {
           "$concat": [
             "Signature algorithm=\"hmac-sha256\",headers=\"date (request-target) host\",signature=",
             {
-              "$security.signHmac": {
+              "$kms.signHmac": {
                 "payload": "$key",
                 "secret": "$key",
                 "algorithm": "sha256",
@@ -187,7 +187,7 @@ export const seedApisPayload = {
         },
         "Content-Type": "application/json"
       },
-      "description": "Oracle Cloud Infrastructure (OCI) Core Services API integration using $security.signHmac for signature header generation.",
+      "description": "Oracle Cloud Infrastructure (OCI) Core Services API integration using $kms.signHmac for signature header generation.",
       "status": "active"
     },
     {
@@ -239,11 +239,11 @@ export const seedApisPayload = {
       "key": "google_client_id_placeholder:google_client_secret_placeholder",
       "headers": {
         "Authorization": {
-          "$concat": [ "Basic ", { "$security.base64Encode": "$key" } ]
+          "$concat": [ "Basic ", { "$kms.base64Encode": "$key" } ]
         },
         "Content-Type": "application/x-www-form-urlencoded"
       },
-      "description": "Google Identity & OAuth 2.0 OpenID Connect authentication pipeline. Uses HTTP Basic Auth ($security.base64Encode) with client_id:client_secret for client authentication.",
+      "description": "Google Identity & OAuth 2.0 OpenID Connect authentication pipeline. Uses HTTP Basic Auth ($kms.base64Encode) with client_id:client_secret for client authentication.",
       "status": "active"
     },
     {
@@ -253,11 +253,11 @@ export const seedApisPayload = {
       "key": "microsoft_client_id_placeholder:microsoft_client_secret_placeholder",
       "headers": {
         "Authorization": {
-          "$concat": [ "Basic ", { "$security.base64Encode": "$key" } ]
+          "$concat": [ "Basic ", { "$kms.base64Encode": "$key" } ]
         },
         "Content-Type": "application/x-www-form-urlencoded"
       },
-      "description": "Microsoft Identity Platform & Entra ID OAuth 2.0 / OIDC pipeline. Uses HTTP Basic Auth ($security.base64Encode) with client_id:client_secret for client authentication.",
+      "description": "Microsoft Identity Platform & Entra ID OAuth 2.0 / OIDC pipeline. Uses HTTP Basic Auth ($kms.base64Encode) with client_id:client_secret for client authentication.",
       "status": "active"
     },
     {
@@ -270,7 +270,7 @@ export const seedApisPayload = {
           "$concat": [
             "Bearer ",
             {
-              "$security.generateJWT": {
+              "$kms.generateJWT": {
                 "header": { "alg": "ES256", "typ": "JWT" },
                 "payload": {
                   "iss": "apple_team_id_placeholder",
@@ -283,7 +283,7 @@ export const seedApisPayload = {
         },
         "Content-Type": "application/x-www-form-urlencoded"
       },
-      "description": "Sign in with Apple OAuth 2.0 & OpenID Connect identity verification pipeline. Utilizes $security.generateJWT to create client assertion tokens.",
+      "description": "Sign in with Apple OAuth 2.0 & OpenID Connect identity verification pipeline. Utilizes $kms.generateJWT to create client assertion tokens.",
       "status": "active"
     },
     {
@@ -293,11 +293,11 @@ export const seedApisPayload = {
       "key": "facebook_app_id_placeholder:facebook_app_secret_placeholder",
       "headers": {
         "Authorization": {
-          "$concat": [ "Basic ", { "$security.base64Encode": "$key" } ]
+          "$concat": [ "Basic ", { "$kms.base64Encode": "$key" } ]
         },
         "Content-Type": "application/json"
       },
-      "description": "Facebook Login OAuth 2.0 authentication service. Uses HTTP Basic Auth ($security.base64Encode) with app_id:app_secret for client authentication.",
+      "description": "Facebook Login OAuth 2.0 authentication service. Uses HTTP Basic Auth ($kms.base64Encode) with app_id:app_secret for client authentication.",
       "status": "active"
     },
     {
@@ -307,11 +307,11 @@ export const seedApisPayload = {
       "key": "github_client_id_placeholder:github_client_secret_placeholder",
       "headers": {
         "Authorization": {
-          "$concat": [ "Basic ", { "$security.base64Encode": "$key" } ]
+          "$concat": [ "Basic ", { "$kms.base64Encode": "$key" } ]
         },
         "Accept": "application/json"
       },
-      "description": "GitHub OAuth 2.0 web authentication pipeline. Uses HTTP Basic Auth ($security.base64Encode) with client_id:client_secret for client authentication.",
+      "description": "GitHub OAuth 2.0 web authentication pipeline. Uses HTTP Basic Auth ($kms.base64Encode) with client_id:client_secret for client authentication.",
       "status": "active"
     }
   ]

@@ -79,7 +79,7 @@ test('the configured workflow persists failure evidence through the real CoCreat
         assert.equal(result.success, true, result.error);
     }
     const { EventEmitter } = await import('node:events');
-    const { ServerMesh } = await import('../../modules/cluster/src/mesh/index.js');
+    const { ServerMesh } = await import('../../modules/cluster/src/send/socket/index.js');
     const server = Object.assign(new EventEmitter(), {
         id: 'observer', organization_id, host: 'platform.test', isPrimary: true, crud: { send }, send() {}
     });
