@@ -132,5 +132,5 @@ reseeding; editing source does not update them automatically.
 `InstanceId.1`. It returns the native response without calling other endpoints.
 `deleteOrganizationServer` checks stored ownership and delegates to `deleteAwsInstance`,
 which validates the returned ID/state and normalizes the acknowledgement. AutoScaler
-commits `master.status: terminating` before workflow dispatch and marks failure when
+commits `primary.status: terminating` before workflow dispatch and marks failure when
 needed; inventory cleanup and DNS removal are separate lifecycle operations.

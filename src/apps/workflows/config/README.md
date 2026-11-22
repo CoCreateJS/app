@@ -108,7 +108,7 @@ it is not rendered again from a global template. `deployment.dns` is an array co
 the nearest eligible POP from each provider, sorted by distance from the demand centroid.
 AutoScaler uses the first POP to select the cloud region. The entire array is saved as
 `server.deployment.dns` in both inventory scopes before provider creation, alongside
-`master.status: 'provisioning'`. A supplied single object is wrapped in an array; missing
+`primary.status: 'provisioning'`. A supplied single object is wrapped in an array; missing
 or null dns becomes `[]`. With no eligible POPs, placement uses the demand centroid
 directly. The saved cluster configuration is not updated.
 The common workflow persists the instance

@@ -81,7 +81,7 @@ test('common workflow checks the saved cluster, delegates AWS, and mirrors the r
     for (const scope of ['platform', 'tenant']) {
         const record = records.get(`${scope}:${response.data.server._id}`);
         assert.equal(record.status, 'starting');
-        assert.equal(record.master.status, 'provisioning');
+        assert.equal(record.primary.status, 'provisioning');
         assert.equal(record['deployment.id'], 'i-test');
     }
     assert.ok(requests.filter(r => r.array === 'servers' && r.organization_id === 'tenant').every(r => r.host === 'tenant.test'));
@@ -104,7 +104,7 @@ test(`dns is saved as an array on both server records (object input: ${singleObj
     assert.equal(reservations.length, 2);
     for (const reservation of reservations) {
         assert.deepEqual(reservation.object.deployment.dns, expected);
-        assert.equal(reservation.object.master.status, 'provisioning');
+        assert.equal(reservation.object.primary.status, 'provisioning');
     }
     for (const record of records.values()) assert.deepEqual(record.deployment.dns, expected);
     assert.deepEqual(response.data.server.deployment.dns, expected);
@@ -150,7 +150,7 @@ for (const options of [{ fail: 'RunInstances' }, { emptyRun: true }]) {
         const { response, records } = await fixture(options);
         assert.ok(response.error?.length);
         assert.equal(records.size, 2);
-        for (const record of records.values()) assert.equal(record['master.status'], 'failed');
+        for (const record of records.values()) assert.equal(record['primary.status'], 'failed');
     });
 }
 

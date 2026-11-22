@@ -75,19 +75,19 @@ export default {
                                             "_id": "$payload.peerUnavailable.0.serverId",
                                             "$or": [
                                                 {
-                                                    "master.status": "running"
+                                                    "primary.status": "running"
                                                 },
                                                 {
-                                                    "master.status": "failed",
-                                                    "master.failure.source": "mesh"
+                                                    "primary.status": "failed",
+                                                    "primary.failure.source": "mesh"
                                                 }
                                             ]
                                         }
                                     },
                                     "object": {
                                         "$set": {
-                                            "master.status": "failed",
-                                            "master.failure": {
+                                            "primary.status": "failed",
+                                            "primary.failure": {
                                                 "source": "mesh",
                                                 "reason": "$payload.peerUnavailable.0.reason",
                                                 "observerId": "$payload.peerUnavailable.0.observerId",

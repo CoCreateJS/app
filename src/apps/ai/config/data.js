@@ -623,7 +623,7 @@ The examples above illustrate record shape and composition, not literal IDs or a
             description: "Server guidance",
             default: true,
             enabled: true,
-            instructions: `Use manage_server_cluster to inspect server topology and perform validated operational controls. Server records are stored in the servers array and contain top-level server lifecycle state, master state, worker1..workerN state, and a deployment object containing cloud, dns, location, provider, region, zone, id, and type.
+            instructions: `Use manage_server_cluster to inspect server topology and perform validated operational controls. Server records are stored in the servers array and contain top-level server lifecycle state, primary state, worker1..workerN state, and a deployment object containing cloud, dns, location, provider, region, zone, id, and type.
 
 Worker controls:
 - cordon prevents a worker from accepting new edge traffic without terminating existing connections.
@@ -631,12 +631,12 @@ Worker controls:
 - drain cordons the worker and closes its active WebSocket connections.
 - restart with worker defined gracefully drains and replaces that worker.
 
-Master controls:
+Primary controls:
 - restart without worker restarts the server application through the primary process.
 - reboot gracefully drains the server and reboots its host.
 - shutdown gracefully drains the server and powers off its host.
 
-Do not represent the master as another traffic worker: cordon, shed, and drain target workers. Reboot and shutdown are host-level destructive operations and require explicit user intent. Explain the operational effect before any control action. Use send_server_message only for generic server events that are not covered by manage_server_cluster. Platform-only operations are restricted to the platform organization.`,
+Do not represent the primary as another traffic worker: cordon, shed, and drain target workers. Reboot and shutdown are host-level destructive operations and require explicit user intent. Explain the operational effect before any control action. Use send_server_message only for generic server events that are not covered by manage_server_cluster. Platform-only operations are restricted to the platform organization.`,
             examples: [
                 { action: "list", status: "running", limit: 50 },
                 { action: "get", serverId: "SERVER_ID" },
@@ -669,7 +669,7 @@ Routing fields are:
 - worker targets one worker ID or an array of worker IDs.
 - server targets one server ID or an array of server IDs.
 - cluster targets one cluster ID or an array of cluster IDs.
-- master=true targets the primary process. Omit it for worker-only delivery.
+- primary=true targets the primary process. Omit it for worker-only delivery.
 - broadcast is opt-in and expands delivery across every applicable target in the selected scope. If omitted, it is false.
 - broadcastSender determines whether the originating location receives the resulting envelope. Set false for fire-and-forget delivery that excludes the origin.
 
@@ -680,7 +680,7 @@ server.send is transport, not persistence or a domain operation. Use storage for
                 {
                     method: "configuration.refresh",
                     worker: 2,
-                    master: false,
+                    primary: false,
                     broadcast: false,
                     broadcastSender: false,
                     name: "autoscaler"
@@ -688,7 +688,7 @@ server.send is transport, not persistence or a domain operation. Use storage for
                 {
                     method: "cache.invalidate",
                     worker: [1, 2, 3],
-                    master: false,
+                    primary: false,
                     broadcastSender: false,
                     key: "ai.instructions.ast"
                 },

@@ -37,7 +37,7 @@
 	const getServerState = (server = {}) => {
 		const topLevelStatus = String(server.status || "unknown").toLowerCase();
 		const workers = getWorkers(server);
-		const processStatuses = [server.master, ...workers]
+		const processStatuses = [server.primary, ...workers]
 			.map((processState) => String(processState?.status || "").toLowerCase())
 			.filter(Boolean);
 		const lifecycle = topLevelStatus === "rebooting" || topLevelStatus === "stopped"
@@ -133,6 +133,7 @@
 					serverId: 1,
 					timestamp: 1,
 					"cpu.avg": 1,
+					"memory.avg": 1,
 					"memory.avg_used_pct": 1
 				}
 			}
@@ -148,7 +149,9 @@
 			? (values.reduce((total, value) => total + value, 0) / values.length).toFixed(2)
 			: "—";
 		const cpu = samples.map((sample) => Number(sample.cpu?.avg)).filter(Number.isFinite);
-		const memory = samples.map((sample) => Number(sample.memory?.avg_used_pct)).filter(Number.isFinite);
+		const memory = samples
+			.map((sample) => Number(sample.memory?.avg ?? sample.memory?.avg_used_pct))
+			.filter(Number.isFinite);
 		const latest = samples.reduce((value, sample) => {
 			const timestamp = new Date(sample.timestamp).getTime();
 			return Number.isFinite(timestamp) && timestamp > value ? timestamp : value;
@@ -162,7 +165,7 @@
 		)) {
 			const sample = telemetryByServer.get(row.dataset.serverId);
 			const serverCpu = Number(sample?.cpu?.avg);
-			const serverMemory = Number(sample?.memory?.avg_used_pct);
+			const serverMemory = Number(sample?.memory?.avg ?? sample?.memory?.avg_used_pct);
 			row.querySelector("[data-server-cpu]").textContent = Number.isFinite(serverCpu)
 				? serverCpu.toFixed(2)
 				: "—";

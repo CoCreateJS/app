@@ -7,8 +7,8 @@
 /**
  * Seeding Payload: configs collection
  * 
- * Telemetry configuration entries for metric collection and write intervals,
- * retention policy, broadcast options, and cluster scale/safety thresholds
+ * Telemetry configuration entries for sampling, periodic and threshold flushes,
+ * and retention policy
  * stored in the 'configs' array.
  * 
  * Note: Telemetry-related settings are represented as individual objects
@@ -22,22 +22,23 @@ export default {
         {
             "_id": "66c9fe7a3f81b4d912a58b91",
             "type": "telemetry",
-            "name": "Cluster Autoscale Configuration",
+            "name": "Cluster Telemetry Configuration",
             "enabled": true,
             "cluster": "*",
             "server": "*",
             "worker": "*",
             "config": {
                 "enabled": true,
-                "collectionInterval": 1000,
-                "writeInterval": 240000,
-                "retentionDays": 30,
-                "broadcast": false,
-                "scaleUpMemoryThreshold": 85,
-                "safetyLimits": {
-                    "cordonMemoryThreshold": 90,
-                    "cordonCpuThreshold": 90
-                }
+                "interval": 1000,
+                "flush": {
+                    "interval": 240000,
+                    "memory": [
+                        { "on": 75, "off": 60 },
+                        { "on": 85, "off": 80 },
+                        { "on": 90, "off": 85 }
+                    ]
+                },
+                "retentionDays": 30
             }
         }
     ]

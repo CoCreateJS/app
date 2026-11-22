@@ -219,7 +219,7 @@ export default {
                                         }
                                     ]
                                 },
-                                "master": {
+                                "primary": {
                                     "type": "boolean",
                                     "description": "Target the primary process when true. Omit for worker-only delivery."
                                 },
@@ -601,7 +601,7 @@ export default {
                         }
                     },
                                         "manage_server_cluster": {
-                        "description": "Inspects and controls CoCreate servers. list/get read the servers collection; self returns the running process; control dispatches validated worker or master operations through server.send. Deployment contains provider-agnostic id/type, cloud, dns and location fields. Worker controls are cordon, shed, and drain. restart may target a worker or, when worker is omitted, the master application. reboot and shutdown target the master host. Explain the effect and obtain clear user intent before state-changing operations. RESTRICTED: platform organization only.",
+                        "description": "Inspects and controls CoCreate servers. list/get read the servers collection; self returns the running process; control dispatches validated worker or primary operations through server.send. Deployment contains provider-agnostic id/type, cloud, dns and location fields. Worker controls are cordon, shed, and drain. restart may target a worker or, when worker is omitted, the primary application. reboot and shutdown target the primary host. Explain the effect and obtain clear user intent before state-changing operations. RESTRICTED: platform organization only.",
                         "parameters": {
                             "type": "object",
                             "properties": {

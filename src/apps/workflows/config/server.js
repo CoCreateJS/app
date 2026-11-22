@@ -322,7 +322,7 @@ export default {
                         "storage": "$actions.cluster.value.storage",
                         "host": "$actions.cluster.value.host",
                         "totalWorkers": 0,
-                        "master": {
+                        "primary": {
                             "status": "provisioning"
                         },
                         "deployment": {
@@ -378,7 +378,7 @@ export default {
                                                 "array": "servers",
                                                 "object": {
                                                     "_id": "$id",
-                                                    "master.status": "failed"
+                                                    "primary.status": "failed"
                                                 }
                                             }
                                         },
@@ -433,7 +433,7 @@ export default {
                                             "array": "servers",
                                             "object": {
                                                 "_id": "$actions.server.id",
-                                                "master.status": "failed"
+                                                "primary.status": "failed"
                                             }
                                         }
                                     },
@@ -446,7 +446,7 @@ export default {
                                                     "array": "servers",
                                                     "object": {
                                                         "_id": "$actions.server.id",
-                                                        "master.status": "failed"
+                                                        "primary.status": "failed"
                                                     },
                                                     "organization_id": "$actions.cluster.tenant",
                                                     "host": "$actions.cluster.value.host"
@@ -470,7 +470,7 @@ export default {
                                     "array": "servers",
                                     "object": {
                                         "_id": "$actions.server.id",
-                                        "master.status": "failed"
+                                        "primary.status": "failed"
                                     }
                                 }
                             },
@@ -483,7 +483,7 @@ export default {
                                             "array": "servers",
                                             "object": {
                                                 "_id": "$actions.server.id",
-                                                "master.status": "failed"
+                                                "primary.status": "failed"
                                             },
                                             "organization_id": "$actions.cluster.tenant",
                                             "host": "$actions.cluster.value.host"
