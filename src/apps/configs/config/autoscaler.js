@@ -122,8 +122,9 @@ chmod 600 /etc/cocreatews/storage.json
 # Cluster fetches its API key through CRUD after boot; it is not sent as user data.
 # JSON/base64 preserves values; file permissions restrict access.
 # Do not print this config or enable shell tracing around credential handling.
-printf '%s' '`, "$bootstrapConfigBase64", `' | base64 --decode > /root/CoCreate.config.js
-chmod 600 /root/CoCreate.config.js
+install -d -m 700 /root/.cocreate
+printf '%s' '`, "$bootstrapConfigBase64", `' | base64 --decode > /root/.cocreate/config.js
+chmod 600 /root/.cocreate/config.js
 
 cat << 'EOF' > /usr/local/bin/cocreatews-start
 #!/usr/bin/env bash

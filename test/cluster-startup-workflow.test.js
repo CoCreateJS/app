@@ -37,7 +37,7 @@ for (const environment of [undefined, 'server_id=node-1\ncluster_id=cluster-1'])
         assert.equal(typeof cluster.startupScript, 'string');
         assert.ok(!cluster.startupScript.includes('{{'));
         assert.ok(!cluster.startupScript.includes('undefined'));
-        const encoded = cluster.startupScript.match(/printf '%s' '([^']+)' \| base64 --decode > \/root\/CoCreate.config.js/);
+        const encoded = cluster.startupScript.match(/printf '%s' '([^']+)' \| base64 --decode > \/root\/\.cocreate\/config.js/);
         assert.ok(encoded, 'Cluster startup contains its prepared bootstrap configuration');
         assert.deepEqual(JSON.parse(Buffer.from(encoded[1], 'base64').toString()), {
             organization_id: input.managedOrganization, host: input.host,

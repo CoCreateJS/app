@@ -28,7 +28,7 @@ for (const endpoint of [aws.object.find(item => item.name === 'create-instance')
         assert.deepEqual(configuration, { organization_id: 'platform', host: 'tenant.example.com', storage });
         assert.equal(sandbox.bootstrapScript.includes(key), false);
         assert.ok(sandbox.bootstrapScript.includes(sandbox.bootstrapConfigBase64));
-        assert.match(sandbox.bootstrapScript, /chmod 600 \/root\/CoCreate.config.js/);
+        assert.match(sandbox.bootstrapScript, /chmod 600 \/root\/\.cocreate\/config.js/);
         const child = execFile('bash', ['-n']);
         child.stdin.end(sandbox.bootstrapScript);
         await new Promise((resolve, reject) => { child.on('error', reject); child.on('exit', code => code === 0 ? resolve() : reject(new Error(`bash syntax check failed: ${code}`))); });

@@ -104,7 +104,7 @@ test('signup onboarding passes real child outputs, seeds both scopes and returns
     assert.equal(tenantKeys.find(key => key.type === 'user').password, 'stored-hash');
     assert.equal(tenantKeys.find(key => key.default).methods.object.read.contacts['_id.$eq'], '$user_id');
     const managed = records.get('platform:keys').find(key => key.managedOrganization === org._id);
-    const encoded = saved.startupScript.match(/printf '%s' '([^']+)' \| base64 --decode > \/root\/CoCreate.config.js/);
+    const encoded = saved.startupScript.match(/printf '%s' '([^']+)' \| base64 --decode > \/root\/\.cocreate\/config.js/);
     assert.ok(encoded);
     const boot = JSON.parse(Buffer.from(encoded[1], 'base64'));
     assert.deepEqual(boot.manager, { organization_id: 'platform', host: 'platform.test', apiKey: managed.key });

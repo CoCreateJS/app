@@ -154,8 +154,9 @@ chmod 600 /etc/cocreatews/storage.json
 # credential is supplied separately through the manager environment value above.
 # JSON/base64 preserves values; file permissions restrict access.
 # Do not print this config or enable shell tracing around credential handling.
-printf '%s' '{{$bootstrap.value}}' | base64 --decode > /root/CoCreate.config.js
-chmod 600 /root/CoCreate.config.js
+install -d -m 700 /root/.cocreate
+printf '%s' '{{$bootstrap.value}}' | base64 --decode > /root/.cocreate/config.js
+chmod 600 /root/.cocreate/config.js
 
 cat << 'EOF' > /usr/local/bin/cocreatews-start
 #!/usr/bin/env bash

@@ -70,7 +70,7 @@ async function run(t, options = {}) {
                 if (name === 'bootstrapScriptBase64') break;
             }
             const script = sandbox.bootstrapScript;
-            const encoded = script.match(/printf '%s' '([^']+)' \| base64 --decode > \/root\/CoCreate.config.js/)[1];
+            const encoded = script.match(/printf '%s' '([^']+)' \| base64 --decode > \/root\/\.cocreate\/config.js/)[1];
             const nodeConfig = JSON.parse(Buffer.from(encoded, 'base64').toString());
             assert.equal(nodeConfig.organization_id, tenant);
             assert.equal(nodeConfig.cluster_id, clusterId);
