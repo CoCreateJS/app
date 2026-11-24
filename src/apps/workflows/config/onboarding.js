@@ -325,7 +325,7 @@ export default {
                     }
                 },
                 "organization": {
-                    "$workflows.run": {
+                    "$workflow.run": {
                         "method": "workflow.createOrganization",
                         "user_id": "$payload.user_id",
                         "createOrganization": {
@@ -346,7 +346,7 @@ export default {
                 },
                 "organizationId": "$actions.organization.createOrganization._id",
                 "storage": {
-                    "$workflows.run": {
+                    "$workflow.run": {
                         "method": "workflow.createManagedMongoDB",
                         "user_id": "$payload.user_id",
                         "createManagedMongoDB": {
@@ -400,7 +400,7 @@ export default {
                     "value": "$result.object.0"
                 },
                 "seed": {
-                    "$workflows.run": {
+                    "$workflow.run": {
                         "method": "workflow.seedOrganization",
                         "user_id": "$payload.user_id",
                         "seedOrganization": {
@@ -458,7 +458,7 @@ export default {
                     "value": "$result.object.0"
                 },
                 "repository": {
-                    "$workflows.run": {
+                    "$workflow.run": {
                         "method": "workflow.createRepository",
                         "user_id": "$payload.user_id",
                         "createRepository": {
@@ -468,7 +468,7 @@ export default {
                     }
                 },
                 "cluster": {
-                    "$workflows.run": {
+                    "$workflow.run": {
                         "method": "workflow.createClusterConfig",
                         "user_id": "$payload.user_id",
                         "createClusterConfig": {

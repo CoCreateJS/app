@@ -1,11 +1,11 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { init as initWorkflows } from '../../modules/workflows/src/server.js';
+import { init as initWorkflow } from '../../modules/workflow/src/server.js';
 import seed from '../src/apps/workflows/config/cluster.js';
 
 async function persist(cluster) {
     const writes = [];
-    const service = await initWorkflows({ crud: { send: async request => {
+    const service = await initWorkflow({ crud: { send: async request => {
         if (request.method === 'object.read') return { object: seed.object };
         writes.push(request);
         return { object: [structuredClone(request.object)] };

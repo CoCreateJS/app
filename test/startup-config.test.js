@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { execFile } from 'node:child_process';
-import { astAsync } from '@cocreate/utils';
-import aws from '../src/apps/endpoints/config/AWS/data.js';
+import { evaluateAsync } from '@cocreate/utils';
+import aws from '../src/apps/endpoints/config/aws/data.js';
 import providers from '../src/apps/endpoints/config/data.js';
 import startup from '../src/apps/configs/config/autoscaler.js';
 
@@ -14,7 +14,7 @@ async function render(endpoint, apikey) {
         $crud: { send: async () => ({ object: [storage] }) }
     };
     for (const [name, action] of Object.entries(endpoint.actions)) {
-        Object.assign(sandbox, await astAsync({ executeAST: { [name]: action }, sandbox }));
+        Object.assign(sandbox, await evaluateAsync({ executeAST: { [name]: action }, sandbox }));
         if (name === 'bootstrapScriptBase64') break;
     }
     return { sandbox, storage };

@@ -16,12 +16,13 @@ export default {
             "config": {
                 "providers.gemini": {
                     "api": "gemini",
-                    "type": "gemeni",
+                    "type": "gemini",
+                    "wireApi": "chat-completions",
                     "models": {
-                        "default": "gemini-1.5-flash",
+                        "default": "gemini-3.8-flash",
                         "allowed": [
-                            "gemini-1.5-flash",
-                            "gemini-1.5-pro"
+                            "gemini-3.8-flash",
+                            "gemini-3.1-pro-preview"
                         ]
                     }
                 }

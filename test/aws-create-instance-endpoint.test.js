@@ -3,7 +3,7 @@ import test from 'node:test';
 import { security } from '@cocreate/utils';
 import { init } from '../../modules/api/src/server.js';
 import cloudSeed from '../src/apps/apis/config/cloud.js';
-import endpointSeed from '../src/apps/endpoints/config/AWS/data.js';
+import endpointSeed from '../src/apps/endpoints/config/aws/data.js';
 
 for (const [name, action] of [['create-instance', 'RunInstances'], ['delete-instance', 'TerminateInstances']]) {
 const endpoint = endpointSeed.object.find(record => record.name === name);

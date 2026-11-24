@@ -47,11 +47,11 @@ export default {
             "url": "https://api.anthropic.com/v1",
             "headers": {
                 "x-api-key": "$key",
-                "anthropic-version": "2023-06-01",
+                "anthropic-version": "2026-10-21",
                 "Content-Type": "application/json"
             },
             "description": "Anthropic Claude API connection.",
-            "enabled": false
+            "enabled": true
         },
         {
             "_id": "65f8ca227b39a3c1a8904e01",

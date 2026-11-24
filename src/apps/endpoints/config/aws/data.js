@@ -411,6 +411,100 @@ export default {
                 "failureReason": "$actions.accountCreationStatusResponse.data.CreateAccountStatus.FailureReason"
             },
             "enabled": false
+        },
+        {
+            "_id": "6bdb00000000000000000001",
+            "api_id": "65f8ca227b39a3c1a8904e02",
+            "name": "db-upsert-leaf",
+            "method": "put",
+            "url": {
+                "$concat": [["https://s3.", "$payload.region", ".amazonaws.com"]]
+            },
+            "endpoint": {
+                "$concat": [["/", "$payload.bucket", "/", "$payload.prefix", "/leaves/", "$payload.uuid", ".json"]]
+            },
+            "headers": {
+                "content-type": "application/json",
+                "host": {
+                    "$concat": [["s3.", "$payload.region", ".amazonaws.com"]]
+                },
+                "x-amz-date": {
+                    "$kms.transform": ["", [{ "op": "timestamp", "format": "iso-basic" }]]
+                },
+                "Authorization": {
+                    "$kms.createAwsSigV4Token": [
+                        {
+                            "method": "PUT",
+                            "uri": {
+                                "$concat": [["/", "$payload.bucket", "/", "$payload.prefix", "/leaves/", "$payload.uuid", ".json"]]
+                            },
+                            "payload": { "$JSON.stringify": "$payload.data" },
+                            "region": "$payload.region",
+                            "service": "s3",
+                            "isoDate": "$x-amz-date",
+                            "headers": {
+                                "content-type": "application/json",
+                                "host": {
+                                    "$concat": [["s3.", "$payload.region", ".amazonaws.com"]]
+                                },
+                                "x-amz-date": "$x-amz-date"
+                            }
+                        },
+                        {
+                            "accessKeyId": "$config.accessKeyId",
+                            "secretAccessKey": "$config.secretAccessKey"
+                        }
+                    ]
+                }
+            },
+            "description": "Writes a complete CoCreateDB leaf JSON document to the configured S3 bucket under the leaves prefix.",
+            "enabled": true
+        },
+        {
+            "_id": "6bdb00000000000000000002",
+            "api_id": "65f8ca227b39a3c1a8904e02",
+            "name": "db-delete-leaf",
+            "method": "delete",
+            "url": {
+                "$concat": [["https://s3.", "$payload.region", ".amazonaws.com"]]
+            },
+            "endpoint": {
+                "$concat": [["/", "$payload.bucket", "/", "$payload.prefix", "/leaves/", "$payload.uuid", ".json"]]
+            },
+            "headers": {
+                "host": {
+                    "$concat": [["s3.", "$payload.region", ".amazonaws.com"]]
+                },
+                "x-amz-date": {
+                    "$kms.transform": ["", [{ "op": "timestamp", "format": "iso-basic" }]]
+                },
+                "Authorization": {
+                    "$kms.createAwsSigV4Token": [
+                        {
+                            "method": "DELETE",
+                            "uri": {
+                                "$concat": [["/", "$payload.bucket", "/", "$payload.prefix", "/leaves/", "$payload.uuid", ".json"]]
+                            },
+                            "payload": "",
+                            "region": "$payload.region",
+                            "service": "s3",
+                            "isoDate": "$x-amz-date",
+                            "headers": {
+                                "host": {
+                                    "$concat": [["s3.", "$payload.region", ".amazonaws.com"]]
+                                },
+                                "x-amz-date": "$x-amz-date"
+                            }
+                        },
+                        {
+                            "accessKeyId": "$config.accessKeyId",
+                            "secretAccessKey": "$config.secretAccessKey"
+                        }
+                    ]
+                }
+            },
+            "description": "Deletes a CoCreateDB leaf JSON document from the configured S3 bucket under the leaves prefix.",
+            "enabled": true
         }
     ]
 };

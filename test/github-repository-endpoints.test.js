@@ -1,16 +1,16 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { astAsync } from '@cocreate/utils';
-import github from '../src/apps/endpoints/config/GitHub/data.js';
+import { evaluateAsync } from '@cocreate/utils';
+import github from '../src/apps/endpoints/config/github/data.js';
 import base from '../src/apps/endpoints/config/data.js';
 
 async function resolve(name, data) {
     const endpoint = [...github.object, ...base.object].find(item => item.name === name);
     const sandbox = { Buffer, owner: 'managed-owner', $payload: { data }, $data: { data } };
     for (const [key, action] of Object.entries(endpoint.actions || {})) {
-        Object.assign(sandbox, await astAsync({ executeAST: { [key]: action }, sandbox }));
+        Object.assign(sandbox, await evaluateAsync({ executeAST: { [key]: action }, sandbox }));
     }
-    return astAsync({ executeAST: {
+    return evaluateAsync({ executeAST: {
         method: endpoint.method, endpoint: endpoint.endpoint,
         ...(endpoint.data && { data: endpoint.data }),
         ...(endpoint.searchParams && { searchParams: endpoint.searchParams })

@@ -358,7 +358,7 @@ lazyLoad("filter", "[filter-query]", () => import(/* webpackChunkName: "filter" 
 lazyLoad("render", "[render], [render-query], [template], template", () => import(/* webpackChunkName: "render" */ "@cocreate/render"));
 lazyLoad("file", "[type='file'], [actions*='upload'], [actions*='download'], [actions*='saveLocally'], [actions*='import'], [actions*='export'], [actions*='createFile'], [actions*='deleteFile'], [actions*='createDirectory'], [actions*='deleteDirectory']", () => import(/* webpackChunkName: "file" */ "@cocreate/file"));
 lazyLoad("elements", "form, [src], [storage], [database], [array], [href], [target], [actions*='disableHref'], [actions*='enableHref']", () => import(/* webpackChunkName: "elements" */ "@cocreate/elements"));
-lazyLoad("workflows", "[workflow]", () => import(/* webpackChunkName: "workflows" */ "@cocreate/workflows"));
+lazyLoad("workflow", "[workflow]", () => import(/* webpackChunkName: "workflow" */ "@cocreate/workflow"));
 lazyLoad("api", "[actions], [template_id]", () => import(/* webpackChunkName: "api" */ "@cocreate/api"));
 lazyLoad("position", "[draggable], [draggable-query], [clonable-query], [droppable-query], [position-target], [position-query]", () => import(/* webpackChunkName: "position" */ "@cocreate/position"));
 lazyLoad("scroll", "[scroll], [scroll-to], [scrollable-x], [scrollable-y]", () => import(/* webpackChunkName: "scroll" */ "@cocreate/scroll"));

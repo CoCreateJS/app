@@ -1,11 +1,11 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { execFileSync } from 'node:child_process';
-import { init } from '../../modules/workflows/src/server.js';
+import { init } from '../../modules/workflow/src/server.js';
 import common from '../src/apps/workflows/config/server.js';
 import aws from '../src/apps/workflows/config/aws.js';
 import cloudSeed from '../src/apps/apis/config/cloud.js';
-import endpoints from '../src/apps/endpoints/config/AWS/data.js';
+import endpoints from '../src/apps/endpoints/config/aws/data.js';
 import { init as initApi } from '../../modules/api/src/server.js';
 
 async function fixture(options = {}) {

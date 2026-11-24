@@ -1,13 +1,13 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { astAsync } from '@cocreate/utils';
+import { evaluateAsync } from '@cocreate/utils';
 import Config from '@cocreate/config';
-import Workflows from '../../modules/workflows/src/server.js';
+import Workflow from '../../modules/workflow/src/server.js';
 import { init as initManager } from '../../modules/cluster/src/manager.js';
 import { ServerMesh } from '../../modules/cluster/src/send/socket/index.js';
 import serverSeed from '../src/apps/workflows/config/server.js';
 import startupSeed from '../src/apps/configs/config/autoscaler.js';
-import aws from '../src/apps/endpoints/config/AWS/data.js';
+import aws from '../src/apps/endpoints/config/aws/data.js';
 import providers from '../src/apps/endpoints/config/data.js';
 
 const tenant = 'aaaaaaaaaaaaaaaaaaaaaaaa', clusterId = 'bbbbbbbbbbbbbbbbbbbbbbbb';
@@ -66,7 +66,7 @@ async function run(t, options = {}) {
                 $crud: { send: async () => ({ object: [{ name: 'platform-storage', provider: 'mongodb', connectionString: 'PLATFORM-CONNECTION-MUST-NOT-LEAK' }] }) }
             };
             for (const [name, action] of Object.entries(endpoint.actions)) {
-                Object.assign(sandbox, await astAsync({ executeAST: { [name]: action }, sandbox }));
+                Object.assign(sandbox, await evaluateAsync({ executeAST: { [name]: action }, sandbox }));
                 if (name === 'bootstrapScriptBase64') break;
             }
             const script = sandbox.bootstrapScript;
@@ -83,8 +83,8 @@ async function run(t, options = {}) {
             return { data: { id: 'i-test', privateIpAddress: '10.0.0.2' } };
         } }
     };
-    await Workflows.init(runtime);
-    runtime.workflow = Workflows;
+    await Workflow.init(runtime);
+    runtime.workflow = Workflow;
     const handler = await initManager(runtime);
     runtime.manager = handler;
     const mesh = new ServerMesh();
@@ -148,7 +148,7 @@ test('all provider macros preserve an already prepared tenant startup script', a
         const sandbox = { Buffer, $payload: { organization_id: 'platform', data: { storage: 'storage-api', startupScript: JSON.stringify({ $concat: [[script]] }) } },
             $crud: { send: async () => ({ object: [{ name: 'platform-storage', provider: 'mongodb', connectionString: 'not-for-tenant' }] }) } };
         for (const [name, action] of Object.entries(endpoint.actions)) {
-            Object.assign(sandbox, await astAsync({ executeAST: { [name]: action }, sandbox }));
+            Object.assign(sandbox, await evaluateAsync({ executeAST: { [name]: action }, sandbox }));
             if (name === 'bootstrapScriptBase64') break;
         }
         assert.equal(sandbox.bootstrapScript, script);

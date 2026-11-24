@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import Workflows from '../../modules/workflows/src/server.js';
+import Workflow from '../../modules/workflow/src/server.js';
 import { init as initOrganizations } from '../../modules/organizations/src/server/index.js';
 import config from '../../modules/config/src/server.js';
 import { getStorage } from '../../modules/crud/src/server/getStorage.js';
@@ -104,8 +104,8 @@ async function run(t, options = {}) {
             return { data: {} };
         } }
     };
-    await Workflows.init(runtime);
-    runtime.workflow = Workflows;
+    await Workflow.init(runtime);
+    runtime.workflow = Workflow;
     await initOrganizations(runtime, { storageProvisioning: {
         cloudProvider: 'AWS', regionName: 'US_EAST_1', cidrBlock: '192.0.2.0/24',
         organizationId: 'forged-id', ...options.settings

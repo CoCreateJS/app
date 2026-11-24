@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { init } from '../../modules/workflows/src/server.js';
+import { init } from '../../modules/workflow/src/server.js';
 import common from '../src/apps/workflows/config/server.js';
 import aws from '../src/apps/workflows/config/aws.js';
 

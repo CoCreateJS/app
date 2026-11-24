@@ -246,11 +246,11 @@ export default {
             path: "../modules/elements",
             repo: "github.com/CoCreateJS/CoCreate-elements.git"
         },
-        workflows: {
-            import: "@cocreate/workflows",
+        workflow: {
+            import: "@cocreate/workflow",
             selector: "[workflow]",
-            path: "../modules/workflows",
-            repo: "github.com/CoCreateJS/CoCreate-workflows.git"
+            path: "../modules/workflow",
+            repo: "github.com/CoCreateJS/workflow.git"
         },
         api: {
             import: "@cocreate/api",

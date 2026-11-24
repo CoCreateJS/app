@@ -1,5 +1,11 @@
 # Organization onboarding workflows
 
+`mcp.js` seeds the single `mcp` normalization workflow. It maps standard MCP `tools/call` requests and common OpenAI, Gemini, and Claude tool-call envelopes into the CoCreate Agent `agent.calls` shape. Provider-generated inference responses remain with the provider; this workflow normalizes only tool-call inputs for Agent execution.
+
+`agent.js` seeds the single `agent` middleware workflow. It normalizes the Agent cycle payload and is the configuration boundary for provider/model adaptation and inference request/response mapping.
+
+`db.js` seeds `db.persist`, the server-side CoCreateDB persistence workflow. It writes complete leaf snapshots and deletes leaves through the AWS `db-upsert-leaf` and `db-delete-leaf` endpoints. Configure the workflow's AWS region, existing bucket and prefix, and configure `accessKeyId` and `secretAccessKey` on the organization-scoped `aws` API record. The first write creates the S3 object key under `<prefix>/leaves/<uuid>.json`; it does not create the bucket. The current DB journal sends leaves only; root and branch persistence remain future work. A DB host can replace `db.persistence.send` to bypass this workflow.
+
 `onboardOrganization` (`onboarding.js`) coordinates signup after `signUp` and
 `signIn`. The form sends only the organization name and hostname through named
 workflow keys. Both the browser's one-item input array and a direct object invocation

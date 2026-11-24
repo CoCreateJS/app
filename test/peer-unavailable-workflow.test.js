@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import Workflows from '../../modules/workflows/src/server.js';
+import Workflow from '../../modules/workflow/src/server.js';
 import seed from '../src/apps/workflows/config/mesh.js';
 import { createUpdate, queryData } from '@cocreate/utils';
 
@@ -20,7 +20,7 @@ async function setup(status = 'running') {
         } },
         send() {}
     };
-    await Workflows.init(server);
+    await Workflow.init(server);
     return { record, writes };
 }
 function envelope(observerId = 'observer', messages = [{ uuid: 'message-1', method: 'example', value: 42 }]) {
@@ -32,12 +32,12 @@ function envelope(observerId = 'observer', messages = [{ uuid: 'message-1', meth
 
 test('workflow preserves messages from multiple observers with addToSet and marks the peer failed', async () => {
     const { record, writes } = await setup();
-    const first = await Workflows.run(envelope());
+    const first = await Workflow.run(envelope());
     assert.equal(first.error, undefined);
     assert.equal(record.primary.status, 'failed');
     assert.equal(record.primary.failure.source, 'mesh');
     assert.deepEqual(record.queuedMessages, envelope().peerUnavailable[0].queuedMessages);
-    const second = await Workflows.run(envelope('other', [...record.queuedMessages, { uuid: 'message-2', method: 'another' }]));
+    const second = await Workflow.run(envelope('other', [...record.queuedMessages, { uuid: 'message-2', method: 'another' }]));
     assert.equal(second.error, undefined);
     assert.equal(record.queuedMessages.length, 2);
     assert.equal(record.peerFailures.length, 2);
@@ -47,7 +47,7 @@ test('workflow preserves messages from multiple observers with addToSet and mark
 for (const status of ['terminating', 'draining', 'stopped']) {
     test(`workflow preserves ${status} while appending diagnostic messages`, async () => {
         const { record } = await setup(status);
-        assert.equal((await Workflows.run(envelope())).error, undefined);
+        assert.equal((await Workflow.run(envelope())).error, undefined);
         assert.equal(record.primary.status, status);
         assert.equal(record.queuedMessages.length, 1);
     });
@@ -57,7 +57,7 @@ test('another live connection prevents node failure but retains missed messages'
     const { record } = await setup();
     const payload = envelope();
     payload.peerUnavailable[0].peerReachable = true;
-    assert.equal((await Workflows.run(payload)).error, undefined);
+    assert.equal((await Workflow.run(payload)).error, undefined);
     assert.equal(record.primary.status, 'running');
     assert.equal(record.queuedMessages.length, 1);
 });
@@ -70,7 +70,7 @@ test('the configured workflow persists failure evidence through the real CoCreat
     const { createDB } = await import('../../modules/db/src/index.js');
     const directory = await mkdtemp(join(tmpdir(), 'peer-failure-workflow-'));
     t.after(() => rm(directory, { recursive: true, force: true }));
-    const db = createDB({ directory, memoryCache: false });
+    const db = await createDB({ directory, memoryCache: false });
     const id = '6c0000000000000000000001';
     const organization_id = '000000000000000000000001';
     const send = data => db.send({ ...data, organization_id, storage: 'production', database: 'platform' });
@@ -83,7 +83,7 @@ test('the configured workflow persists failure evidence through the real CoCreat
     const server = Object.assign(new EventEmitter(), {
         id: 'observer', organization_id, host: 'platform.test', isPrimary: true, crud: { send }, send() {}
     });
-    server.workflow = await Workflows.init(server);
+    server.workflow = await Workflow.init(server);
     const mesh = new ServerMesh();
     mesh.server = server;
     const peer = { serverId: id, readyState: 3, isControlSocket: true };

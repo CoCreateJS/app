@@ -22,7 +22,7 @@ for (const failure of [false, true]) {
         const elements = [name, host, password, controller];
         const form = { ...attributes({ workflow: 'unique, onboardOrganization' }), elements,
             querySelectorAll: () => elements };
-        const source = fs.readFileSync(new URL('../../modules/workflows/src/client.js', import.meta.url), 'utf8');
+        const source = fs.readFileSync(new URL('../../modules/workflow/src/client.js', import.meta.url), 'utf8');
         const functions = source.slice(source.indexOf('function getWorkflowNames('), source.indexOf('function registerWorkflow('));
         const output = { organizationId: 'tenant', clusterId: 'cluster', status: 'configured', redirect: 'https://tenant.cocreatejs.com/auth/' };
         const run = vm.runInNewContext(`(() => { ${functions}; return runWorkflow; })()`, { getData, setData,

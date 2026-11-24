@@ -87,7 +87,7 @@ const storageActions = {
     },
     bootstrapConfigBytes: { "$Buffer.from": [{ "$JSON.stringify": '$bootstrapConfig' }, 'utf8'] },
     bootstrapConfigBase64: { "$bootstrapConfigBytes.toString": 'base64' },
-    bootstrapScript: { "$astAsync": '$payload.data.startupScript' },
+    bootstrapScript: { "$evaluateAsync": '$payload.data.startupScript' },
     bootstrapScriptBytes: { "$Buffer.from": ['$bootstrapScript', 'utf8'] },
     bootstrapScriptBase64: { "$bootstrapScriptBytes.toString": 'base64' }
 };

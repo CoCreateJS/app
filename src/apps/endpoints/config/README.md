@@ -2,7 +2,7 @@
 
 Endpoint AST records are kept in provider-specific folders under `config` so
 that records can be inspected and synced by integration. AWS records live in
-`AWS/data.js`; MongoDB Atlas records live in `MongoDB/data.js`. Other cloud
+`aws/data.js`; MongoDB Atlas records live in `mongodb/data.js`. Other cloud
 provider records remain in the root `data.js` until their own pass.
 
 ## AWS endpoints
@@ -41,7 +41,7 @@ management account's access role after transfer.
 
 ## Bunny DNS routing
 
-Bunny endpoint records live in `Bunny/data.js`. `create-dns-record` accepts
+Bunny endpoint records live in `bunny/data.js`. `create-dns-record` accepts
 `data.zoneId` and a Bunny-shaped `data.record`; `delete-dns-record` accepts
 `data.zoneId` and `data.recordId`. Both endpoint records and the Bunny DNS
 API seed remain disabled until an API key is configured and the domain/zone
@@ -50,7 +50,7 @@ The managed route workflow and region mapping are documented in the workspace
 `Bunny.md`; do not invoke DNS mutations until its public-IP and routing-policy
 inputs are available.
 
-The [Bunny region mapping](Bunny/region-mapping.json) groups cloud regions by
+The [Bunny region mapping](bunny/region-mapping.json) groups cloud regions by
 DNS routing region. Select the DNS region first, then a cloud provider and one
 of its mapped regions. Provider values are arrays so a DNS region can offer
 multiple cloud-region candidates. Region keys are the routing group labels;
@@ -63,7 +63,7 @@ autoscaler does not consume it yet.
 
 ## MongoDB Atlas provisioning
 
-MongoDB Atlas provisioning records live in `MongoDB/data.js`. The Atlas
+MongoDB Atlas provisioning records live in `mongodb/data.js`. The Atlas
 Administration API record (`mongodb-atlas-admin`) remains separate from the
 MongoDB storage connection record (`mongodb`). These endpoints are disabled
 until Atlas API credentials, permissions, and billing eligibility are confirmed.
@@ -134,3 +134,14 @@ reseeding; editing source does not update them automatically.
 which validates the returned ID/state and normalizes the acknowledgement. AutoScaler
 commits `primary.status: terminating` before workflow dispatch and marks failure when
 needed; inventory cleanup and DNS removal are separate lifecycle operations.
+
+## AI provider endpoints
+
+AI endpoints are grouped into lowercase provider folders because each provider
+has multiple API families and request/response formats. The initial records are
+`openai/data.js` (`POST /responses`), `gemini/data.js` (`POST /chat/completions`
+on Google's OpenAI-compatible base URL), and `anthropic/data.js`
+(`POST /messages`). Each endpoint forwards `payload.data` as the provider-native
+request body; the MCP workflow is responsible for normalizing requests before
+calling the Agent execution path. Add additional operations to the provider's
+folder as those workflows need them.

@@ -393,7 +393,7 @@ export default {
                     "_id": "$actions.server.id"
                 },
                 "instance": {
-                    "$workflows.run": [
+                    "$workflow.run": [
                         {
                             "method": "$actions.cloud.workflow.value",
                             "data": {
@@ -826,7 +826,7 @@ export default {
                     }
                 },
                 "instance": {
-                    "$workflows.run": [
+                    "$workflow.run": [
                         {
                             "method": "$actions.cloud.workflow.value",
                             "data": {
